@@ -351,7 +351,7 @@ namespace Aula_10._12._2025
                     Console.WriteLine($"\nSeu terceiro perfil é de Convencional\nCom uma pontuação de {pontuacao} pontos.\n\nOs cursos recomendados para este perfil são: Administração, Controle de Qualidade, Planejamento.");
                     break;
             }
-            if (limite == true)
+            if (limite = true)
             {
                 Console.WriteLine("\nVocê exedeu o limite, então ou você é muito bom ou você provavelmente não estava sendo verdadeiro durante o questionário...");
             }
