@@ -1,13 +1,13 @@
-﻿
+
 using System.Collections;
 using Aula_10._12._2025;
 
 Atalhos atalhos = new Atalhos();
 
-int melhor = 0;
-int perfilselecionado1 = 0;
-int perfilselecionado2 = 0;
-int perfilselecionado3 = 0;
+int melhor = -1;
+int perfilselecionado1 = -1;
+int perfilselecionado2 = -1;
+int perfilselecionado3 = -1;
 bool exedeuLimite = false;
 bool continuar = true;
 
@@ -33,34 +33,39 @@ while (continuar)
             melhor = perfil[i];
             perfilselecionado1 = i;
         }
-        if (melhor == perfil[i] && perfilselecionado1 != i)
+        else if (melhor == perfil[i] && perfilselecionado1 != i)
         {
             perfilselecionado2 = perfil[i];
         }
-        if (melhor == perfil[i] && perfilselecionado1 != i && perfilselecionado2 != i)
+        else if (melhor == perfil[i] && perfilselecionado1 != i && perfilselecionado2 != i)
         {
             perfilselecionado3 = perfil[i];
         }
-        if (melhor == perfil[i] && perfilselecionado1 != i && perfilselecionado2 != i && perfilselecionado3 != i)
+        else if (melhor == perfil[i] && perfilselecionado1 != i && perfilselecionado2 != i && perfilselecionado3 != i)
         {
             exedeuLimite = true;
             break;
         }
     }
 
-    if (perfilselecionado2 == 0)
-    {
-        atalhos.Resposta1(melhor, perfilselecionado1);
-    }
-    else if (perfilselecionado3 == 0)
-    {
-        atalhos.Resposta2(melhor, perfilselecionado1, perfilselecionado2);
-    }
-    else
+    if (perfilselecionado3 != -1)
     {
         atalhos.Resposta3(melhor, perfilselecionado1, perfilselecionado2, perfilselecionado3, exedeuLimite);
     }
+    else if (perfilselecionado2 != -1)
+    {
+        atalhos.Resposta2(melhor, perfilselecionado1, perfilselecionado2);
+    }
+    else if (perfilselecionado3 != -1)
+    {
+        atalhos.Resposta1(melhor, perfilselecionado1);
+    }
 
+    if(melhor == 16)
+    {
+        Console.WriteLine("\nVocê atingiu a nota máxima");
+    }
+    
     Console.WriteLine("\nDeseja repitir o questionário? Digite 's' para sim ou 'n' para não)");
     string resposta = Console.ReadLine()!;
 
@@ -70,8 +75,8 @@ while (continuar)
     }
     else if (resposta == "n")
     {
-        
         Console.WriteLine("\nAté uma próxima \n");
+        continuar = false;
     }
     else
     {
