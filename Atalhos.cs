@@ -201,7 +201,7 @@ namespace Aula_10._12._2025
                 int resposta = int.Parse(Console.ReadLine()!);
                 if (resposta < 5 && resposta >= 0)
                 {
-                    Empreendedor += resposta;
+                    Convencional += resposta;
                 }
                 else
                 {
