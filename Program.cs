@@ -3,14 +3,10 @@ using System.Collections;
 using Aula_10._12._2025;
 
 Atalhos atalhos = new Atalhos();
+List<Perfil> perfils = new List<Perfil>();
 
-int melhor = -1;
-int perfilselecionado1 = -1;
-int perfilselecionado2 = -1;
-int perfilselecionado3 = -1;
-bool exedeuLimite = false;
+int melhor = 0;
 bool continuar = true;
-
 
 while (continuar)
 {
@@ -24,52 +20,67 @@ while (continuar)
     atalhos.OpcoesEmpreendedor();
     atalhos.OpcoesConvencional();
 
-    int[] perfil = new int[6] { atalhos.Realista, atalhos.Investigativo, atalhos.Artístico, atalhos.Social, atalhos.Empreendedor, atalhos.Convencional };
-
     for (int i = 0; i < 6; i++)
     {
-        if (melhor < perfil[i])
+        Perfil perfil = new Perfil();
+        switch (i)
         {
-            melhor = perfil[i];
-            perfilselecionado1 = i;
+            case 0:
+                perfil.Nome = "Realista";
+                perfil.Pontuacao = atalhos.Realista;
+                break;
+            case 1:
+                perfil.Nome = "Investigativo";
+                perfil.Pontuacao = atalhos.Investigativo;
+                break;
+            case 2:
+                perfil.Nome = "Artístico";
+                perfil.Pontuacao = atalhos.Artístico;
+                break;
+            case 3:
+                perfil.Nome = "Social";
+                perfil.Pontuacao = atalhos.Social;
+                break;
+            case 4:
+                perfil.Nome = "Empreendedor";
+                perfil.Pontuacao = atalhos.Empreendedor;
+                break;
+            case 5:
+                perfil.Nome = "Convencional";
+                perfil.Pontuacao = atalhos.Convencional;
+                break;
         }
-        else if (melhor == perfil[i] && perfilselecionado1 != i)
-        {
-            perfilselecionado2 = perfil[i];
-        }
-        else if (melhor == perfil[i] && perfilselecionado1 != i && perfilselecionado2 != i)
-        {
-            perfilselecionado3 = perfil[i];
-        }
-        else if (melhor == perfil[i] && perfilselecionado1 != i && perfilselecionado2 != i && perfilselecionado3 != i)
-        {
-            exedeuLimite = true;
-            break;
-        }
+        perfils.Add(perfil);
     }
 
-    if (perfilselecionado3 != -1)
+    int melhorNota = perfils.Max(m => m.Pontuacao);
+    melhor = melhorNota;
+    var perfilComMelhorPontuacao = perfils.Where(m => m.Pontuacao == melhorNota).ToList();
+
+    if (perfilComMelhorPontuacao.Count > 1)
     {
-        atalhos.Resposta3(melhor, perfilselecionado1, perfilselecionado2, perfilselecionado3, exedeuLimite);
+        Console.WriteLine("\nVocê possui mais de um perfil com a maior pontuação!\n");
+        Console.WriteLine("\nSeus perfis são:\n");
+        foreach (var perfil in perfilComMelhorPontuacao)
+        {
+            Console.WriteLine($"Perfil: {perfil.Nome} - Pontuação: {perfil.Pontuacao}\n{perfil.Recomendacao()}\n");
+        }
     }
-    else if (perfilselecionado2 != -1)
+    else
     {
-        atalhos.Resposta2(melhor, perfilselecionado1, perfilselecionado2);
-    }
-    else if (perfilselecionado3 != -1)
-    {
-        atalhos.Resposta1(melhor, perfilselecionado1);
+        var perfil = perfilComMelhorPontuacao.First();
+        Console.WriteLine($"\nSeu perfil é: {perfil.Nome} - Pontuação: {perfil.Pontuacao}\n{perfil.Recomendacao()}\n");
     }
 
-    if(melhor == 16)
+    if (melhor == 16)
     {
         Console.WriteLine("\nVocê atingiu a nota máxima");
     }
-    
+
     Console.WriteLine("\nDeseja repitir o questionário? Digite 's' para sim ou 'n' para não)");
     string resposta = Console.ReadLine()!;
 
-    if(resposta == "s" || resposta == "sim")
+    if (resposta == "s" || resposta == "sim")
     {
         Console.WriteLine("\nVamos Constinuar!!! \n");
     }
