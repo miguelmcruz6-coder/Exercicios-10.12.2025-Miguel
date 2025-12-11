@@ -1,5 +1,4 @@
 
-using System.Collections;
 using Aula_10._12._2025;
 
 Atalhos atalhos = new Atalhos();
@@ -8,9 +7,9 @@ List<Perfil> perfils = new List<Perfil>();
 int melhor = 0;
 bool continuar = true;
 
+
 while (continuar)
 {
-
     Console.WriteLine("\n\t\t\tEssa pesquisa irá fazez questões para saber seu perfil\n\n0 – Nada a ver\t\t1 – Pouco\t\t2 – Parcialmente\t\t3 – Bastante\t\t4 – Totalmente\n");
 
     atalhos.OpcoesRealista();
@@ -29,22 +28,27 @@ while (continuar)
                 perfil.Nome = "Realista";
                 perfil.Pontuacao = atalhos.Realista;
                 break;
+
             case 1:
                 perfil.Nome = "Investigativo";
                 perfil.Pontuacao = atalhos.Investigativo;
                 break;
+
             case 2:
                 perfil.Nome = "Artístico";
                 perfil.Pontuacao = atalhos.Artístico;
                 break;
+
             case 3:
                 perfil.Nome = "Social";
                 perfil.Pontuacao = atalhos.Social;
                 break;
+
             case 4:
                 perfil.Nome = "Empreendedor";
                 perfil.Pontuacao = atalhos.Empreendedor;
                 break;
+
             case 5:
                 perfil.Nome = "Convencional";
                 perfil.Pontuacao = atalhos.Convencional;
