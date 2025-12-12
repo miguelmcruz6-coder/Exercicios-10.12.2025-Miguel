@@ -1,4 +1,3 @@
-
 using Aula_10._12._2025;
 
 Atalhos atalhos = new Atalhos();
@@ -6,7 +5,6 @@ List<Perfil> perfils = new List<Perfil>();
 
 int melhor = 0;
 bool continuar = true;
-
 
 while (continuar)
 {
@@ -61,24 +59,31 @@ while (continuar)
     melhor = melhorNota;
     var perfilComMelhorPontuacao = perfils.Where(m => m.Pontuacao == melhorNota).ToList();
 
-    if (perfilComMelhorPontuacao.Count > 1)
+    if (melhorNota >= 0 && melhorNota <= 16)
     {
-        Console.WriteLine("\nVocê possui mais de um perfil com a maior pontuação!\n");
-        Console.WriteLine("\nSeus perfis são:\n");
-        foreach (var perfil in perfilComMelhorPontuacao)
+        if (perfilComMelhorPontuacao.Count > 1)
         {
-            Console.WriteLine($"Perfil: {perfil.Nome} - Pontuação: {perfil.Pontuacao}\n{perfil.Recomendacao()}\n");
+            Console.WriteLine("\nVocê possui mais de um perfil com a maior pontuação!\n");
+            Console.WriteLine("\nSeus perfis são:\n");
+            foreach (var perfil in perfilComMelhorPontuacao)
+            {
+                Console.WriteLine($"Perfil: {perfil.Nome} - Pontuação: {perfil.Pontuacao}\n{perfil.Recomendacao()}\n");
+            }
+        }
+        else
+        {
+            var perfil = perfilComMelhorPontuacao.First();
+            Console.WriteLine($"\nSeu perfil é: {perfil.Nome} - Pontuação: {perfil.Pontuacao}\n{perfil.Recomendacao()}\n");
+        }
+
+        if (melhor == 16)
+        {
+            Console.WriteLine("\nVocê atingiu a nota máxima");
         }
     }
     else
     {
-        var perfil = perfilComMelhorPontuacao.First();
-        Console.WriteLine($"\nSeu perfil é: {perfil.Nome} - Pontuação: {perfil.Pontuacao}\n{perfil.Recomendacao()}\n");
-    }
-
-    if (melhor == 16)
-    {
-        Console.WriteLine("\nVocê atingiu a nota máxima");
+        Console.WriteLine("\nSe você levasse a sério o questionário eu te diria qual é o seu perfil...\n");
     }
 
     Console.WriteLine("\nDeseja repitir o questionário? Digite 's' para sim ou 'n' para não)");
